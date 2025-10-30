@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don't Click Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #1e1e1e; /* پس‌زمینه تاریک مثل فیگما */
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .counter {
+            font-size: 4rem; /* اندازه بزرگ برای عدد */
+            margin-bottom: 50px;
+            transition: transform 0.2s; /* انیمیشن اختیاری برای کلیک */
+        }
+        .button {
+            background-color: #ff0000; /* قرمز */
+            color: #ffffff;
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px; /* گردی دکمه */
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .button:hover {
+            background-color: #cc0000; /* تیره‌تر موقع هاور */
+        }
+        .button:active {
+            transform: scale(0.95); /* کوچکتر شدن موقع کلیک */
+        }
+        /* ریسپانسیو برای موبایل */
+        @media (max-width: 768px) {
+            .counter {
+                font-size: 3rem;
+            }
+            .button {
+                font-size: 1.2rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="counter" id="counter">1</div>
+    <button class="button" id="clickButton">Don't Click</button>
+
+    <script>
+        let count = 1; // شروع از ۱
+        const maxCount = 999; // حداکثر تا ۹۹۹
+
+        const counterElement = document.getElementById('counter');
+        const buttonElement = document.getElementById('clickButton');
+
+        buttonElement.addEventListener('click', () => {
+            if (count < maxCount) {
+                count++;
+                counterElement.textContent = count;
+                // انیمیشن اختیاری: بزرگ شدن عدد
+                counterElement.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    counterElement.style.transform = 'scale(1)';
+                }, 200);
+            } else {
+                alert('رسیدی به حداکثر! 🎉'); // اگر بخوای، می‌تونی تغییر بدی
+            }
+        });
+    </script>
+</body>
+</html>
